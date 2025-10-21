@@ -298,7 +298,7 @@ graph TD
         T --> U["Ler QR Code para Sincronizar<br>com o Atendimento do Celular"];
         U --> V[Medição Automática de Sinais Vitais];
         V --> W["- Oxigenação Sanguínea<br>- Pressão Arterial<br>- Temperatura<br>- Batimentos Cardíacos"];
-        W --> X[Análise Integrada dos Dados<br>(Sintomas + Sinais Vitais)];
+        W --> X["Análise Integrada dos Dados<br>(Sintomas + Sinais Vitais)"];
         X --> Y{Classificação de Risco};
     end
 
@@ -306,7 +306,7 @@ graph TD
         Y -- Baixa Criticidade --> Z["<font color='green'><b>RISCO VERDE</b></font>"];
         Y -- Média Criticidade --> AA["<font color='yellow'><b>RISCO AMARELO</b></font>"];
         Y -- Alta Criticidade --> AB["<font color='red'><b>RISCO VERMELHO</b></font>"];
-        Z --> AC[Tela do Totem: Paciente direcionado para a Ala de Atendimento Verde];
+        Z --> AC["Tela do Totem:<br>Paciente direcionado para a<br>Ala de Atendimento correspondente"];
         AA --> AC;
         AB --> AC;
         AC --> AD[Médico Acessa o Laudo Completo<br>do Paciente no Sistema];

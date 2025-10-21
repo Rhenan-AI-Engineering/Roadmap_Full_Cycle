@@ -269,34 +269,34 @@ graph TD
         A[Início do Atendimento] --> B{Reconhecimento Facial};
         B -- Válido --> C[Cadastro/Login];
         B -- Inválido --> A;
-        C --> D[Preenchimento da Ficha do Paciente];
-        D --> E["- Dados Pessoais (Nome, Idade, etc.)<br>- Histórico Familiar<br>- Histórico Médico Pessoal<br>- Medicamentos em Uso<br>- Alergias Conhecidas<br>- Tipo Sanguíneo, Peso, Altura<br>- Plano de Saúde<br>- Condições Especiais (Ex: Síndrome Vasovagal)"];
-        E --> F{Como deseja informar os sintomas?};
-        F -->|Digitar ou Pré-selecionar| G[Seleção de Sintomas via Checkbox/Texto];
-        F -->|Falar| H[Conversão de Voz para Texto dos Sintomas];
-        G --> I[Análise dos Sintomas e Dados];
+        C --> D[Preenchimento da Ficha<br>do Paciente];
+        D --> E["- Dados Pessoais (Nome, Idade, etc.)<br>- Histórico Familiar<br>- Histórico Médico Pessoal<br>- Medicamentos em Uso<br>- Alergias Conhecidas<br>- Tipo Sanguíneo, Peso, Altura<br>- Plano de Saúde<br>- Condições Especiais<br>(Ex: Síndrome Vasovagal)"];
+        E --> F{Como deseja informar<br>os sintomas?};
+        F -->|Digitar ou Pré-selecionar| G[Seleção de Sintomas<br>via Checkbox/Texto];
+        F -->|Falar| H[Conversão de Voz<br>para Texto dos Sintomas];
+        G --> I[Análise dos Sintomas<br>e Dados da Ficha];
         H --> I;
     end
 
     subgraph "Fase 2: Direcionamento ao Hospital"
         I --> J{Sistema busca hospitais};
         J --> K["Critérios:<br>- Compatibilidade com Plano<br>- Especialidade Necessária<br>- Vaga Disponível"];
-        K --> L{Paciente possui transporte próprio?};
+        K --> L{Paciente possui<br>transporte próprio?};
         L -- Sim --> M{Escolha do Hospital};
-        M -->|Mais Próximo| N[Rota Gerada para o Hospital];
+        M -->|Mais Próximo| N[Rota Gerada para<br>o Hospital];
         M -->|Melhor Avaliado| N;
-        L -- Não --> O[Solicitar Transporte Hospitalar];
-        O --> P[Localização do Paciente Enviada];
+        L -- Não --> O[Solicitar Transporte<br>Hospitalar];
+        O --> P[Localização do Paciente<br>Enviada];
         P --> Q[Aguardar Transporte];
-        N --> R[Paciente a Caminho do Hospital];
+        N --> R[Paciente a Caminho<br>do Hospital];
         Q --> R;
     end
 
     subgraph "Fase 3: Chegada e Triagem no Totem"
         R --> S[Chegada ao Hospital];
-        S --> T[Totem de Autoatendimento];
+        S --> T[Totem de<br>Autoatendimento];
         T --> U["Ler QR Code para Sincronizar<br>com o Atendimento do Celular"];
-        U --> V[Medição Automática de Sinais Vitais];
+        U --> V[Medição Automática<br>de Sinais Vitais];
         V --> W["- Oxigenação Sanguínea<br>- Pressão Arterial<br>- Temperatura<br>- Batimentos Cardíacos"];
         W --> X["Análise Integrada dos Dados<br>(Sintomas + Sinais Vitais)"];
         X --> Y{Classificação de Risco};
@@ -309,6 +309,6 @@ graph TD
         Z --> AC["Tela do Totem:<br>Paciente direcionado para a<br>Ala de Atendimento correspondente"];
         AA --> AC;
         AB --> AC;
-        AC --> AD[Médico Acessa o Laudo Completo<br>do Paciente no Sistema];
+        AC --> AD["Médico Acessa o Laudo<br>Completo do Paciente<br>no Sistema"];
     end
 ```

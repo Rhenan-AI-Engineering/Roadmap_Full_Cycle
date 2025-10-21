@@ -263,3 +263,52 @@ Roadmap Master — Full Cycle • Arquitetura • Produto • Liderança • Seg
 - **cosign/Sigstore** [[22](https://docs.digicert.com/en/software-trust-manager/code-signing/sign-with-third-party-signing-tools/container-images/sign-containers-with-cosign-using-pkcs11-library.html)] • **SLSA** [[23](https://jfrog.com/learn/grc/slsa-framework/)] • **CycloneDX** [[24](https://owasp.org/www-project-cyclonedx/)] • **SPDX** [[25](https://spdx.dev/)]  
 - **MLflow** [[27](https://pypi.org/project/mlflow/)] • **Feast** [[26](https://mljourney.com/how-to-version-and-track-features-with-feast-feature-store/)] • **Kubeflow Pipelines** [[28](https://www.kubeflow.org/docs/components/pipelines/overview/)] • **KServe** [[29](https://mlserver.readthedocs.io/en/latest/user-guide/deployment/kserve.html)] • **BentoML** [[30](https://docs.bentoml.com/en/latest/examples/overview.html)]
 
+```mermaid
+graph TD
+    subgraph "Fase 1: Início no Celular"
+        A[Início do Atendimento] --> B{Reconhecimento Facial};
+        B -- Válido --> C[Cadastro/Login];
+        B -- Inválido --> A;
+        C --> D[Preenchimento da Ficha do Paciente];
+        D --> E["- Dados Pessoais (Nome, Idade, etc.)<br>- Histórico Familiar<br>- Histórico Médico Pessoal<br>- Medicamentos em Uso<br>- Alergias Conhecidas<br>- Tipo Sanguíneo, Peso, Altura<br>- Plano de Saúde<br>- Condições Especiais (Ex: Síndrome Vasovagal)"];
+        E --> F{Como deseja informar os sintomas?};
+        F -->|Digitar ou Pré-selecionar| G[Seleção de Sintomas via Checkbox/Texto];
+        F -->|Falar| H[Conversão de Voz para Texto dos Sintomas];
+        G --> I[Análise dos Sintomas e Dados];
+        H --> I;
+    end
+
+    subgraph "Fase 2: Direcionamento ao Hospital"
+        I --> J{Sistema busca hospitais};
+        J --> K["Critérios:<br>- Compatibilidade com Plano<br>- Especialidade Necessária<br>- Vaga Disponível"];
+        K --> L{Paciente possui transporte próprio?};
+        L -- Sim --> M{Escolha do Hospital};
+        M -->|Mais Próximo| N[Rota Gerada para o Hospital];
+        M -->|Melhor Avaliado| N;
+        L -- Não --> O[Solicitar Transporte Hospitalar];
+        O --> P[Localização do Paciente Enviada];
+        P --> Q[Aguardar Transporte];
+        N --> R[Paciente a Caminho do Hospital];
+        Q --> R;
+    end
+
+    subgraph "Fase 3: Chegada e Triagem no Totem"
+        R --> S[Chegada ao Hospital];
+        S --> T[Totem de Autoatendimento];
+        T --> U["Ler QR Code para Sincronizar<br>com o Atendimento do Celular"];
+        U --> V[Medição Automática de Sinais Vitais];
+        V --> W["- Oxigenação Sanguínea<br>- Pressão Arterial<br>- Temperatura<br>- Batimentos Cardíacos"];
+        W --> X[Análise Integrada dos Dados<br>(Sintomas + Sinais Vitais)];
+        X --> Y{Classificação de Risco};
+    end
+
+    subgraph "Fase 4: Encaminhamento e Atendimento"
+        Y -- Baixa Criticidade --> Z["<font color='green'><b>RISCO VERDE</b></font>"];
+        Y -- Média Criticidade --> AA["<font color='yellow'><b>RISCO AMARELO</b></font>"];
+        Y -- Alta Criticidade --> AB["<font color='red'><b>RISCO VERMELHO</b></font>"];
+        Z --> AC[Tela do Totem: Paciente direcionado para a Ala de Atendimento Verde];
+        AA --> AC;
+        AB --> AC;
+        AC --> AD[Médico Acessa o Laudo Completo<br>do Paciente no Sistema];
+    end
+```

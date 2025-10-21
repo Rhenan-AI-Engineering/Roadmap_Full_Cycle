@@ -266,49 +266,49 @@ Roadmap Master — Full Cycle • Arquitetura • Produto • Liderança • Seg
 ```mermaid
 graph TD
     subgraph "Fase 1: Início no Celular"
-        A[Início do Atendimento] --> B{Reconhecimento Facial};
-        B -- Válido --> C[Cadastro/Login];
+        A[Início do<br>Atendimento] --> B{Reconhecimento<br>Facial};
+        B -- Válido --> C[Cadastro / Login];
         B -- Inválido --> A;
-        C --> D[Preenchimento da Ficha<br>do Paciente];
-        D --> E["- Dados Pessoais (Nome, Idade, etc.)<br>- Histórico Familiar<br>- Histórico Médico Pessoal<br>- Medicamentos em Uso<br>- Alergias Conhecidas<br>- Tipo Sanguíneo, Peso, Altura<br>- Plano de Saúde<br>- Condições Especiais<br>(Ex: Síndrome Vasovagal)"];
-        E --> F{Como deseja informar<br>os sintomas?};
-        F -->|Digitar ou Pré-selecionar| G[Seleção de Sintomas<br>via Checkbox/Texto];
-        F -->|Falar| H[Conversão de Voz<br>para Texto dos Sintomas];
-        G --> I[Análise dos Sintomas<br>e Dados da Ficha];
+        C --> D[Preenchimento<br>da Ficha];
+        D --> E["- Dados Pessoais<br>- Histórico Familiar/Pessoal<br>- Medicamentos e Alergias<br>- Plano de Saúde<br>- Condições Especiais"];
+        E --> F{Como informar<br>os sintomas?};
+        F -->|Digitar/Selecionar| G[Sintomas via<br>Texto/Checkbox];
+        F -->|Falar| H[Sintomas via<br>Voz para Texto];
+        G --> I[Análise de Dados<br>e Sintomas];
         H --> I;
     end
 
-    subgraph "Fase 2: Direcionamento ao Hospital"
-        I --> J{Sistema busca hospitais};
-        J --> K["Critérios:<br>- Compatibilidade com Plano<br>- Especialidade Necessária<br>- Vaga Disponível"];
-        K --> L{Paciente possui<br>transporte próprio?};
-        L -- Sim --> M{Escolha do Hospital};
-        M -->|Mais Próximo| N[Rota Gerada para<br>o Hospital];
+    subgraph "Fase 2: Direcionamento"
+        I --> J{Sistema busca<br>hospitais};
+        J --> K["Critérios:<br>- Compatível com Plano<br>- Especialidade<br>- Vaga Disponível"];
+        K --> L{Possui<br>Transporte?};
+        L -- Sim --> M{Escolha do<br>Hospital};
+        M -->|Mais Próximo| N[Gerar Rota<br>para Hospital];
         M -->|Melhor Avaliado| N;
-        L -- Não --> O[Solicitar Transporte<br>Hospitalar];
-        O --> P[Localização do Paciente<br>Enviada];
-        P --> Q[Aguardar Transporte];
-        N --> R[Paciente a Caminho<br>do Hospital];
+        L -- Não --> O[Solicitar<br>Transporte<br>Hospitalar];
+        O --> P[Localização<br>Enviada];
+        P --> Q[Aguardar<br>Transporte];
+        N --> R[Paciente<br>a Caminho];
         Q --> R;
     end
 
-    subgraph "Fase 3: Chegada e Triagem no Totem"
-        R --> S[Chegada ao Hospital];
+    subgraph "Fase 3: Totem no Hospital"
+        R --> S[Chegada ao<br>Hospital];
         S --> T[Totem de<br>Autoatendimento];
-        T --> U["Ler QR Code para Sincronizar<br>com o Atendimento do Celular"];
-        U --> V[Medição Automática<br>de Sinais Vitais];
-        V --> W["- Oxigenação Sanguínea<br>- Pressão Arterial<br>- Temperatura<br>- Batimentos Cardíacos"];
-        W --> X["Análise Integrada dos Dados<br>(Sintomas + Sinais Vitais)"];
-        X --> Y{Classificação de Risco};
+        T --> U["Ler QR Code<br>para Sincronizar<br>Atendimento"];
+        U --> V[Medição de<br>Sinais Vitais];
+        V --> W["- Oxigenação<br>- Pressão Arterial<br>- Temperatura<br>- Batimentos"];
+        W --> X["Análise Integrada:<br>Sintomas + Sinais"];
+        X --> Y{Classificação<br>de Risco};
     end
 
-    subgraph "Fase 4: Encaminhamento e Atendimento"
-        Y -- Baixa Criticidade --> Z["<font color='green'><b>RISCO VERDE</b></font>"];
-        Y -- Média Criticidade --> AA["<font color='yellow'><b>RISCO AMARELO</b></font>"];
-        Y -- Alta Criticidade --> AB["<font color='red'><b>RISCO VERMELHO</b></font>"];
-        Z --> AC["Tela do Totem:<br>Paciente direcionado para a<br>Ala de Atendimento correspondente"];
+    subgraph "Fase 4: Atendimento"
+        Y -- Baixo --> Z["<font color='green'><b>RISCO VERDE</b></font>"];
+        Y -- Médio --> AA["<font color='yellow'><b>RISCO AMARELO</b></font>"];
+        Y -- Alto --> AB["<font color='red'><b>RISCO VERMELHO</b></font>"];
+        Z --> AC["Totem informa:<br>Aguardar na<br>Ala de Atendimento"];
         AA --> AC;
         AB --> AC;
-        AC --> AD["Médico Acessa o Laudo<br>Completo do Paciente<br>no Sistema"];
+        AC --> AD["Médico Acessa<br>Laudo Completo<br>no Sistema"];
     end
 ```
